@@ -1,0 +1,43 @@
+version: "3"
+
+networks:
+  backend:
+    name: celsia-learn
+
+services:
+  postgres:
+    image: postgres:10.3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "2"
+    # ports:
+    #   - 5450:5432
+    networks:
+      - backend
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: celsia_learn
+    volumes:
+      - "./db/postgres:/var/lib/postgresql/data"
+
+  pgadmin:
+    image: dpage/pgadmin4:7.3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "2"
+    ports:
+      - 5050:80
+    networks:
+      - backend
+    environment:
+      PGADMIN_DEFAULT_EMAIL: cgalvisl@celsia.com
+      PGADMIN_DEFAULT_PASSWORD: test
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgres
