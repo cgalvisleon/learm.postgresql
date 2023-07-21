@@ -34,7 +34,7 @@
 ## Despliegue
 
 ```
-git clone https://celsia-technet@dev.azure.com/celsia-technet/SGO/_git/CELSIA.learm.postgresql postgresql
+git clone https://github.com/cgalvisleon/learm.postgresql postgresql
 
 cd postgresql
 
@@ -60,5 +60,5 @@ docker stack rm learm
 ## Access url
 
 ```
-http://pv30097:5050
+http://<host>:5050
 ```
