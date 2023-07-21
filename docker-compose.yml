@@ -36,6 +36,6 @@ services:
       PGADMIN_DEFAULT_EMAIL: cgalvisl@celsia.com
       PGADMIN_DEFAULT_PASSWORD: test
     volumes:
-      - pgadmin:/var/lib/pgadmin
+      - "./pgadmin:/var/lib/pgadmin"
     depends_on:
       - postgres
