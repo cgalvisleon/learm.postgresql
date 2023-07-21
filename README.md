@@ -53,6 +53,8 @@ docker-compose -f ./docker-compose.yml down
 mkdir db
 mkdir db/postgres
 mkdir pgadmin
+sudo chmod 775 db/postgres
+sudo chmod 777 pgadmin
 docker stack deploy -c docker-compose.yml learm
 docker stack rm learm
 ```
