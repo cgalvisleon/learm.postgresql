@@ -45,18 +45,18 @@ CREATE TABLE IF NOT EXISTS test.USER_PROJECTS(
  INDEX SERIAL,
  PRIMARY KEY(USER_ID, PROJECT_ID)
 );
-CREATE INDEX IF NOT EXISTS PROJECT_DATE_MAKE_IDX ON test.PROJECT(DATE_MAKE);
+CREATE INDEX IF NOT EXISTS USER_PROJECTS_DATE_MAKE_IDX ON test.USER_PROJECTS(DATE_MAKE);
 
 -- INSERT
 INSERT INTO test.USERS(_ID, NAME, _DATA)
-VALUES('1A', 'Usuario 1', '{"nombre": "Cesar", "apellido": "Galvis"}');
+VALUES('1A', 'Usuario 1', '{"nombre": "Jhon", "apellido": "Doe"}');
 
 -- INSERT RETURNING
 INSERT INTO test.USERS(_ID, NAME, _DATA)
-VALUES('2A', 'Usuario 2', '{"nombre": "Luis Fernando", "apellido": "Salas"}') RETURNING INDEX;
+VALUES('2A', 'Usuario 2', '{"nombre": "Jhon Jhon", "apellido": "Doe"}') RETURNING INDEX;
 
 INSERT INTO test.PROJECT(_ID, NAME, _DATA)
-VALUES('1P', 'Projecto 1', '{"nombre": "Generacion", "descripcion": ""}') RETURNING *;
+VALUES('1P', 'Projecto 1', '{"nombre": "Project 1", "descripcion": ""}') RETURNING *;
 
 -- DELETE WHERE
 DELETE FROM test.USERS WHERE _ID='1A';
@@ -66,11 +66,11 @@ DELETE FROM test.USERS;
 
 -- INSERT EN BACH
 INSERT INTO test.USERS(_ID, NAME, _DATA)
-VALUES('1A', 'Usuario 1', '{"nombre": "Cesar", "apellido": "Galvis"}'),
-('2A', 'Usuario 2', '{"nombre": "LuiEss Fernando", "apellido": "Salas"}');
+VALUES('1A', 'Usuario 1', '{"nombre": "Jhon", "apellido": "Doe"}'),
+('2A', 'Usuario 2', '{"nombre": "Jhon Jhon", "apellido": "Doe"}');
 
 -- INTEGRIDAD REFERENCIAL
-INSERT INTO test.USERS(USER_ID, PROJECT_ID)
+INSERT INTO test.USER_PROJECTS(USER_ID, PROJECT_ID)
 VALUES('1A', '1P') RETURNING *;
 
 -- FUNCTION
@@ -114,6 +114,6 @@ $$ LANGUAGE plpgsql;
 
 -- EJECUCION DE FUNCTION
 SELECT test.UPSET_USER('3A', 'Usuario 3', '{
-"nombre": "Luis Bernardo",
-"apellido": "Villa"
+"nombre": "Jhon",
+"apellido": "Doe"
 }');
