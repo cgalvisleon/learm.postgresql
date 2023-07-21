@@ -12,8 +12,6 @@ services:
       options:
         max-size: "1m"
         max-file: "2"
-    # ports:
-    #   - 5450:5432
     networks:
       - backend
     environment:
